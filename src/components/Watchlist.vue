@@ -54,6 +54,8 @@ export default {
     background: none
     padding: 15px
     margin: 0
+    outline: none
+    cursor: pointer
     div
       transform: rotate(45deg)
       width: 20px

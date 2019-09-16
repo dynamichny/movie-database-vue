@@ -67,6 +67,9 @@ export default {
         });
 
     },
+    watchlist: function() {
+      localStorage.setItem('watchlist', JSON.stringify(this.watchlist));
+    },
   },
   mounted() {
     fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=485dd1f1ee71083619712efed20ee4bb`)
@@ -80,6 +83,10 @@ export default {
         this.trendingMovies = resp.results;
       });
   },
+  created(){
+    this.watchlist = JSON.parse(localStorage.getItem('watchlist'));
+    if(this.watchlist === null) this.watchlist = [];
+  }
 }
 </script>
 

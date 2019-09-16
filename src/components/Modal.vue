@@ -48,8 +48,8 @@ export default {
     },
     handleWatchlist(){
       let wl = [...this.watchlist];
-      if(wl.indexOf(this.movie) >= 0){
-        wl.splice(wl.indexOf(this.movie), 1)
+      if(wl.filter(mv => mv.title == this.movie.title).length > 0){
+        wl.splice(wl.findIndex(mv => mv.title == this.movie.title), 1)
       } else {
         wl.push(this.movie)
       }
@@ -71,7 +71,7 @@ export default {
       }
     },
     watchlistText(){
-      if(this.watchlist.indexOf(this.movie) >= 0){
+      if(this.watchlist.filter(mv => mv.title == this.movie.title).length > 0){
         return "Remove from watchlist"
       } else {
         return "Add to watchlist"
