@@ -2,7 +2,7 @@
   <div class="headerWrapper">
     <HeaderBackground :src="bgImage"  />
     <SearchInput @search="searchIn = $event" />
-    <SearchOutputs v-if="searchOut" :movies="searchOut" @movieid="showMovieId = $event" />
+    <SearchOutputs v-if="searchOut" :movies="searchOut" />
     <h2>{{randomMovie.title}}</h2>
   </div>
 </template>
@@ -29,7 +29,6 @@ export default {
     return{
       searchIn: '',
       searchOut: '',
-      showMovieId: '',
     }
   },
   watch: {
@@ -44,9 +43,6 @@ export default {
         this.searchOut = ''; 
       }
     },300),
-    showMovieId: function(){
-      this.$emit('showMovieId', this.showMovieId)
-    }
   },
   computed: {
     bgImage(){
