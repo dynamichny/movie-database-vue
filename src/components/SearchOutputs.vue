@@ -1,6 +1,6 @@
 <template>
   <div class="search-outputs">
-    <div class="output" v-for="movie in movies" :key="movie.id" @click="emitId(movie.id)">
+    <div class="output" v-for="movie in movies" :key="movie.id" @click="$parent.$emit('showMovieId', movie.id)">
       <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w200'+movie.poster_path"/>
       <p class="output-title">{{movie.title}} ({{movie.release_date.split('-')[0]}})</p>
     </div>
@@ -12,11 +12,6 @@
 export default {
   name: 'SearchOutputs',
   props: ['movies'],
-  methods: {
-    emitId(id){
-      this.$emit('movieid', id)
-    }
-  },
 };
 </script>
 
