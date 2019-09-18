@@ -4,6 +4,7 @@
     <SearchInput @search="searchIn = $event" />
     <SearchOutputs v-if="searchOut" :movies="searchOut" />
     <h2>{{randomMovie.title}}</h2>
+    <HeaderButton @click.native="$emit('modal', randomMovie.id)"/>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import HeaderBackground from './HeaderBackground.vue'
 import SearchInput from './SearchInput.vue'
 import SearchOutputs from './SearchOutputs.vue';
+import HeaderButton from './HeaderButton.vue'
 import debounce from 'lodash.debounce';
 
 
@@ -19,7 +21,8 @@ export default {
   components: {
     HeaderBackground,
     SearchInput,
-    SearchOutputs
+    SearchOutputs,
+    HeaderButton
 
   },
   props: {
@@ -62,8 +65,8 @@ export default {
     color: white;
     position: absolute;
     bottom: 10%;
-    left: 10%;
     font-size: 3rem;
-
+    margin: 0 10% 20px;
   }
+  
 </style>

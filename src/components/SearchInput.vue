@@ -38,12 +38,17 @@ export default {
     padding: 15px;
     transition: all .2s;
     outline: none;
+    font-family: 'Source Code Pro', monospace;
     @media (max-width:550px){
       width: 85%;
     }
     &:focus {
       border-bottom: 5px solid #01d277;
       box-shadow: 0px 10px 15px -8px #01d277;
+    }
+    &::placeholder{
+      font-family: 'Source Code Pro', monospace;
+      font-size: 1.8rem
     }
   }
 </style>

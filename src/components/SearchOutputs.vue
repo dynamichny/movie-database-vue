@@ -23,30 +23,40 @@ export default {
   top: calc(20% + 60px)
   left: 0
   right: 0
-  width: calc(60%)
+  width: 60%
   height: 50vh
   margin: 0 auto
   overflow-y: auto
-  .output
-    box-sizing: border-box
-    display: flex
-    align-items: center
-    background: rgb(36,36,36)
-    padding: 10px 20px 0 20px 
 
-    width: 100%
-    min-height: 100px
-    border: 1px solid rgba(0,0,0,0.2)
-    cursor: pointer
-    img
-      height: 80px
-    .output-title
-      color: white
-      margin: 0 30px
-      font-size: 3rem
-      padding: 7px 0
-    &:hover
-      background: rgb(45,45,45)
-      .output-title
-        text-decoration: underline #01d277
+.output
+  box-sizing: border-box
+  display: flex
+  align-items: center
+  background: rgb(36,36,36)
+  padding: 10px 20px 0 20px 
+  width: 100%
+  min-height: 100px
+  border: 1px solid rgba(0,0,0,0.2)
+  cursor: pointer
+  &:hover
+    background: rgb(45,45,45)
+  img
+    height: 80px
+
+.output-title
+  color: white
+  margin: 0 30px
+  font-size: 2.5rem
+  padding: 7px 0
+
+
+.output-title
+  text-decoration: underline #01d277
+
+@media (max-width: 550px)
+  .search-outputs
+    width: 85%
+  .output-title
+    font-size: 2rem
+
 </style>

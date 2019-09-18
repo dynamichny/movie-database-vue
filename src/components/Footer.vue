@@ -26,6 +26,10 @@ export default {
   align-items: center;
   justify-content: center;
   color: white;
+  text-align: center;
+}
+p{
+  margin: 0 10px;
 }
 a {
   color: #01d277;

@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style scoped lang='css'>
+<style scoped lang='scss'>
 .movie-popup {
   position: fixed;
   background: rgba(0, 0, 0, 0.6);
@@ -145,7 +145,11 @@ export default {
     font-size: 3.7rem;
     line-height: 0.9;
     color: black;
-    margin: 30px 30px 0 30px; }
+    margin: 30px 30px 0 30px;
+    @media (max-width: 800px){
+      font-size: 3.2rem;
+    }
+     }
 
 .generes-length {
   display: flex;
@@ -241,6 +245,7 @@ export default {
   border: none;
   background: none;
   padding: 15px;
+  cursor: pointer;
   margin: 0; }
   .close div {
     border-radius: 5px;

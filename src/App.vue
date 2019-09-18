@@ -8,24 +8,24 @@
     <transition name="modal">
       <Modal v-if="isModal" 
       :movie="showMovie" 
+      :watchlist="watchlist" 
       @closeModal="isModal = $event" 
       @resetModalId="showMovieId = $event"
-      :watchlist="watchlist" 
       @updateWatchlist="watchlist = $event" 
       />
     </transition>
 
     <transition name="wl">
       <Watchlist v-if="isWatchlist" 
-      @closeWl="isWatchlist = $event" 
       :watchlist="watchlist" 
+      @closeWl="isWatchlist = $event" 
       @updateWatchlist="watchlist = $event"
       @modalId="showMovieId = $event"
       />
     </transition>
 
     <Nav :watchlist='isWatchlist' @changeWatchlist="isWatchlist = $event"/>
-    <Header :randomMovie="randomMovie" @input="searchInput = $event" @showMovieId="showMovieId = $event"/>
+    <Header :randomMovie="randomMovie" @input="searchInput = $event" @showMovieId="showMovieId = $event" @modal="showMovieId = $event" />
     <TrendingWeek :trendingMovies="trendingMovies" @movieid="showMovieId = $event"/>
     <Footer />
     
@@ -89,7 +89,9 @@ export default {
      watchlist: function() {
       if(this.user){
         let watchlist = this.watchlist;
-        db.collection('watchlists').doc(this.user.uid).update({watchlist})
+        db.collection('watchlists').doc(this.user.uid).update({watchlist}).then(() => {
+          console.log('updated')
+        }).catch(error => alert(error))
       }
     }, 
     isLoginWGoogle: function(){
@@ -99,9 +101,7 @@ export default {
     },
     registerData: function(){
       this.isRegister = false;
-      firebase.auth().createUserWithEmailAndPassword(this.registerData.email, this.registerData.password).then(result =>{
-        alert(result)
-      }).catch(error => alert(error))
+      firebase.auth().createUserWithEmailAndPassword(this.registerData.email, this.registerData.password).catch(error => alert(error))
     },
     loginData: function(){
       this.isLogin = false;
@@ -111,6 +111,7 @@ export default {
     },
     isLogout(){
       firebase.auth().signOut().then(() => {
+        console.log('logged out')
         this.user = null;
         this.watchlist = [];
       }).catch(error => alert(error))
@@ -120,7 +121,6 @@ export default {
         db.collection('watchlists').doc(this.user.uid).get()
           .then(querySnapshot =>{
             if(querySnapshot.exists){
-              console.log(querySnapshot.data())
               querySnapshot.data().watchlist.forEach(movie => this.watchlist.push(movie))
             } else {
               db.collection('watchlists').doc(this.user.uid).set({

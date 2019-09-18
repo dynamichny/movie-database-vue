@@ -23,8 +23,8 @@ export default {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: 0% 35%;
+    background-size: cover;
+    background-position: 50% 35%;
     z-index: -1;
     position: absolute;
     top: 0;
