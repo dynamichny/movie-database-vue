@@ -6,14 +6,14 @@
       <div class="inputs">
         <div class="email">
           <label for="email">Email</label>
-          <input type="email" name="email" v-model="email">
+          <input type="email" name="email" v-model="email" required>
         </div>
         <div class="password">
           <label for="password">Password</label>
-          <input type="password" name="password" v-model="password">
+          <input type="password" name="password" v-model="password" required>
         </div>
       </div>
-      <button class="submit" @mouseup="$emit('login', {email, password})">Log in</button>
+      <button class="submit" type="submit">Log in</button>
     </form>
   </div>
 </template>
@@ -44,6 +44,10 @@ export default {
     color: white;
     z-index: 10000;
     font-size: 2rem;
+    @media (max-width: 600px){
+      width: 100%;
+      height: 100%;
+    }
   }
   h2{
     text-align: center;
@@ -78,6 +82,9 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @media (max-width: 600px){
+        flex-direction: column;
+      }
       input{
         background: none;
         border: none;
@@ -87,6 +94,10 @@ export default {
         color: white;
         width: 50%;
         transition: all 0.15s;
+        @media (max-width: 600px){
+          width: 80%;
+          margin: 10px;
+        }
         &:focus {
           border-bottom: 5px solid #01d277;
           box-shadow: 0px 10px 15px -15px #01d277;
@@ -95,7 +106,7 @@ export default {
     }
   }
   .submit{
-    width: 20%;
+    width: 130px;
     height: 50px;
     background: #01d277;
     color: white;

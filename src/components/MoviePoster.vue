@@ -26,6 +26,7 @@ export default {
   .movie {
     background: white;
     cursor: pointer;
+    margin: auto;
   }
   img {
     border: 1px solid white;
@@ -46,7 +47,9 @@ export default {
     color: #181818;
   }
   .realise_date {
-    color: #01d277;
+    color: #555;
+    font-weight: 400;
+    font-size: 1.2rem;
     line-height: 1;
     margin: 0 5px;
     padding: 10px 0 10px;

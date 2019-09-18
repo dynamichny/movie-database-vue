@@ -31,13 +31,18 @@ export default {
     flex-wrap: wrap;
     color: #01d277;
     widows: 100%;
-    height: 100px;
+    height: auto;
     font-size: 170%;
+    padding: 10px 0;
   }
   h1{
     font-family: 'Sarina', monospace;
     cursor: pointer;
     margin: 0 15px;
+    @media (max-width: 500px){
+      text-align: center;
+      margin: 10px 15px;
+    }
   }
   a{
     cursor: pointer;
