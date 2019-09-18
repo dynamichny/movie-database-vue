@@ -3,6 +3,7 @@
     <Bar @loginClicked="isLogin = $event" @registerClicked="isRegister = $event" :user="user" @logout="isLogout = $event"/>
 
     <Register v-if="isRegister" @register="registerData = $event" @closeRegister="isRegister = false"/>
+
     <Login v-if="isLogin" @login="loginData = $event" @closeLogin="isLogin = false"/>
 
     <transition name="modal">
@@ -25,54 +26,57 @@
     </transition>
 
     <Nav :watchlist='isWatchlist' @changeWatchlist="isWatchlist = $event"/>
+
     <Header :randomMovie="randomMovie" @input="searchInput = $event" @showMovieId="showMovieId = $event" @modal="showMovieId = $event" />
+
     <TrendingWeek :trendingMovies="trendingMovies" @movieid="showMovieId = $event"/>
+
     <Footer />
     
   </div>
 </template>
 
 <script>
-import Watchlist from './components/Watchlist.vue';
+import Bar from './components/Bar.vue';
+import Register from './components/Register.vue';
+import Login from './components/Login.vue';
 import Nav from './components/Nav.vue';
+import Watchlist from './components/Watchlist.vue';
 import Header from './components/Header.vue';
 import TrendingWeek from './components/TrendingWeek.vue';
 import Footer from './components/Footer.vue';
 import Modal from './components/Modal.vue';
-import Login from './components/Login.vue';
-import Register from './components/Register.vue';
-import Bar from './components/Bar.vue';
 import db from './components/firebaseInit.js';
 import firebase from 'firebase';
 
 export default {
   name: 'app',
   components: {
+    Bar,
+    Register,
+    Login,
     Nav,
+    Watchlist,
     Header,
     TrendingWeek,
     Footer,
-    Watchlist,
     Modal,
-    Bar,
-    Register,
-    Login
   },
   data() {
     return {
       isWatchlist: false,
+      isModal: false,
+      isLogin: false,
+      isRegister: false,
+      isLogout: false,
       randomMovie: {},
       trendingMovies: [],
-      isModal: false,
       showMovie: {},
       showMovieId: '',
       watchlist: [],
-      isLogin: false,
-      isRegister: false,
       user: null,
       registerData: {},
       loginData: {},
-      isLogout: false
     }
   },
   watch: {
@@ -89,32 +93,35 @@ export default {
      watchlist: function() {
       if(this.user){
         let watchlist = this.watchlist;
-        db.collection('watchlists').doc(this.user.uid).update({watchlist}).then(() => {
-          console.log('updated')
-        }).catch(error => alert(error))
+        db.collection('watchlists').doc(this.user.uid).update({watchlist})
+          .catch(error => alert(error))
       }
     }, 
     isLoginWGoogle: function(){
-      firebase.auth().signInWithPopup().then(result =>{
-        this.user = result.user;
-      }).catch(error => alert(error))
+      firebase.auth().signInWithPopup()
+        .then(result =>{
+          this.user = result.user;
+        }).catch(error => alert(error))
     },
     registerData: function(){
       this.isRegister = false;
-      firebase.auth().createUserWithEmailAndPassword(this.registerData.email, this.registerData.password).catch(error => alert(error))
+      firebase.auth().createUserWithEmailAndPassword(this.registerData.email, this.registerData.password)
+        .catch(error => alert(error))
     },
     loginData: function(){
       this.isLogin = false;
-      firebase.auth().signInWithEmailAndPassword(this.loginData.email, this.loginData.password).then(result=>{
-        this.user = result.user;
-      }).catch(error => alert(error))
+      firebase.auth().signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
+        .then(result=>{
+          this.user = result.user;
+        }).catch(error => alert(error))
     },
     isLogout(){
-      firebase.auth().signOut().then(() => {
-        console.log('logged out')
-        this.user = null;
-        this.watchlist = [];
-      }).catch(error => alert(error))
+      firebase.auth().signOut()
+        .then(() => {
+          console.log('logged out')
+          this.user = null;
+          this.watchlist = [];
+        }).catch(error => alert(error))
     },
     user: function(){
       if(this.user){
@@ -128,9 +135,9 @@ export default {
               });
             } 
           });
+        }
       }
-    }
-  },
+    },
   mounted() {
     fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=485dd1f1ee71083619712efed20ee4bb`)
       .then(resp => resp.json())

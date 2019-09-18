@@ -4,7 +4,6 @@
     <a @click.prevent="$emit('loginClicked', true)" v-if="!user">Log in</a>
     <a v-if="user">{{user.email}}</a>
     <a @click.prevent="$emit('logout', true)" v-if="user">Log out</a>
-    
   </div>
 </template>
 

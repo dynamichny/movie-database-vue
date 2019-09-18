@@ -22,8 +22,7 @@ export default {
     HeaderBackground,
     SearchInput,
     SearchOutputs,
-    HeaderButton
-
+    HeaderButton,
   },
   props: {
     randomMovie: Object

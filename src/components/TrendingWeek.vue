@@ -2,7 +2,7 @@
   <div class="trendingWeekWrapper">
     <h2>Trending this week</h2>
     <div class="movieList">
-      <MoviePoster v-for="movie in trendingMovies" :key="movie.id" :movie="movie" @click.native="showModal(movie.id)" />
+      <MoviePoster v-for="movie in trendingMovies" :key="movie.id" :movie="movie" @click.native="$emit('movieid', movie.id)" />
     </div>
   </div>
 </template>
@@ -23,11 +23,6 @@ export default {
   props: [
     'trendingMovies'
   ],
-  methods: {
-    showModal(id){
-      this.$emit('movieid', id)
-    },
-  },
   computed: {
     setMovieid(){
       this.$emit('movieid', this.getMovieid);
