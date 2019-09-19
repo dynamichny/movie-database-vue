@@ -141,7 +141,7 @@ export default {
   right: 5%;
   box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
   overflow-y: auto; }
-  .description-heading .title {
+  .title {
     font-size: 3.7rem;
     line-height: 0.9;
     color: black;
@@ -149,7 +149,7 @@ export default {
     @media (max-width: 800px){
       font-size: 3.2rem;
     }
-     }
+  }
 
 .generes-length {
   display: flex;
@@ -188,7 +188,11 @@ export default {
   align-items: center; }
 
 .rating, .release {
-  margin: 20px; }
+  margin: 20px;
+  @media (max-width: 550px){
+    margin: 0;
+  }
+   }
 
 .rating1, .release1 {
   font-size: 3.0rem;
@@ -311,25 +315,28 @@ export default {
       color: white;
       font-weight: bold;
       margin: 10px;
-      font-size: 4rem; }
+      font-size: 2.5rem; }
     .description-heading .generes-length {
       margin: 0 5% 5px; }
       .description-heading .generes-length .movie-length {
         background: rgba(0, 0, 0, 0.4);
         color: white; }
     .description-heading .info {
-      margin: 0;
+      margin: 0 0 15px;
+      flex-wrap: nowrap;
       color: white; }
     .description-heading .rating1, .description-heading .release1 {
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       color: white; }
     .description-heading .rating, .description-heading .release2 {
-      margin-top: 10px;
-      margin-bottom: 10px; }
+      margin-top: 5px;
+      margin-bottom: 0px; }
   .description-text {
     color: white;
-    margin: 0 20px 100px;
-    height: 18vh; }
+    margin: 0 20px;
+    height: 20vh;
+    box-sizing: border-box;
+     }
   .movie-cont {
     align-items: center; }
   .movie-more {
@@ -337,6 +344,8 @@ export default {
     align-items: flex-end;
     background: 0;
     margin: auto;
+    padding: 0 0 100px;
+    box-sizing: border-box;
     height: 100vh;
     overflow-y: hidden; }
     .movie-more img {
@@ -349,7 +358,7 @@ export default {
       margin: 5px auto;
       box-shadow: 0px 5px 30px 5px rgba(0, 0, 0, 0.75); }
   .buttons {
-    bottom: 5%; }
+    bottom: 2%; }
   .btn-seemore, .btn-towatchlist {
     margin: 10px;
     background: rgba(0, 0, 0, 0.4);

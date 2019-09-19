@@ -2,7 +2,7 @@
   <div class="registerWrapper">
     <h2>Register</h2>
     <button class="close" @click.prevent="$emit('closeRegister', false)">Close</button>
-    <form>
+    <form @submit.prevent="$emit('register', {email, password})">
       <div class="inputs">
         <div class="email">
           <label for="email">Email</label>

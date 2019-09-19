@@ -136,7 +136,17 @@ export default {
             } 
           });
         }
+      },
+    isLogin(){
+      if(this.isRegister){
+        this.isRegister = false;
       }
+    },
+    isRegister(){
+      if(this.isLogin){
+        this.isLogin = false;
+      }
+    }
     },
   mounted() {
     fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=485dd1f1ee71083619712efed20ee4bb`)
@@ -155,7 +165,8 @@ export default {
 
 <style lang="scss">
 html{
-  font-size: 62.5%
+  font-size: 62.5%;
+  
 }
 body{
   margin: 0;
