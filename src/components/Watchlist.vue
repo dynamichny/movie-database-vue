@@ -28,8 +28,8 @@ export default {
       this.$emit('updateWatchlist', wl)
     },
     showModal(id, target){
-      if(target.target.className !== 'arrow'){
-        if(target.target.localName !== 'button') this.$emit('modalId', id)
+      if(target.target.className !== 'arrow' && target.target.localName !== 'button'){
+        this.$emit('modalId', id)
       }
     }
   }
