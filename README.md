@@ -1,4 +1,5 @@
-# test
+# Movie Database
+> Website working with themoviedb.org API.
 
 ## Project setup
 ```
